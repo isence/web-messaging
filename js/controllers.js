@@ -49,7 +49,7 @@ angular.module('mychat.controllers', [])
                 email: user.email,
                 password: user.pwdForLogin
             }).then(function (authData) {
-                console.log("Logged in as:" + authData.uid);
+                console.log("登录者是:" + authData.uid);
                 ref.child("users").child(authData.uid).once('value', function (snapshot) {
                     var val = snapshot.val();
                     // 更新 AngularJS $scope
@@ -76,6 +76,7 @@ angular.module('mychat.controllers', [])
     };
 //选择房间
     Chats.selectRoom($state.params.roomId);
+        console.log($scope.displayName.displayName+"进入房间")
 
     var roomName = Chats.getSelectedRoomName();
 

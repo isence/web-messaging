@@ -42,14 +42,14 @@ angular.module('mychat.services', ['firebase'])
                 return null;
         },
         selectRoom: function (roomId) {
-            console.log("selecting the room with id: " + roomId);
+            console.log("进入房间: " + roomId);
             selectedRoomId = roomId;
             if (!isNaN(roomId)) {
                 chats = $firebase(ref.child('rooms').child(selectedRoomId).child('chats')).$asArray();
             }
         },
         send: function (from, message) {
-            console.log("sending message from :" + from.displayName + " & message is " + message);
+            console.log("消息来自 :" + from.displayName + " & 消息是 " + message);
             if (from && message) {
                 var chatMessage = {
                     from: from.displayName,
@@ -57,7 +57,7 @@ angular.module('mychat.services', ['firebase'])
                     createdAt: Firebase.ServerValue.TIMESTAMP
                 };
                 chats.$add(chatMessage).then(function (data) {
-                    console.log("message added");
+                    console.log("消息已经添加");
                 });
             }
         }
