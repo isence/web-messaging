@@ -75,8 +75,7 @@ angular.module('mychat.controllers', [])
         textMessage: ""
     };
 //选择房间
-    Chats.selectRoom($state.params.roomId);
-        console.log($scope.displayName.displayName+"进入房间")
+        Chats.selectRoom($state.params.roomId);
 
     var roomName = Chats.getSelectedRoomName();
 
@@ -106,5 +105,8 @@ angular.module('mychat.controllers', [])
         $state.go('tab.chat', {
             roomId: roomId
         });
+        //选择房间
+        Chats.selectRoom(roomId);
+        console.log($scope.displayName.displayName+"进入房间");
     }
 });
