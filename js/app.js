@@ -5,7 +5,6 @@ var firebaseUrl = "https://dazzling-heat-5766.firebaseio.com";
 function onDeviceReady() {
     angular.bootstrap(document, ["mychat"]);
 }
-//console.log("binding device ready");
 // 注册 onDeviceReady callback with deviceready event
 document.addEventListener("deviceready", onDeviceReady, false);
 
@@ -25,10 +24,8 @@ angular.module('mychat', ['ionic', 'firebase', 'angularMoment', 'mychat.controll
             // org.apache.cordova.statusbar required
             StatusBar.styleDefault();
         }
-        // To Resolve Bug
-        ionic.Platform.fullScreen();
-       //console.log(Auth);
 
+        ionic.Platform.fullScreen();
         $rootScope.firebaseUrl = firebaseUrl;
         $rootScope.displayName = null;
         //监听登录状态
@@ -63,13 +60,11 @@ angular.module('mychat', ['ionic', 'firebase', 'angularMoment', 'mychat.controll
 
 .config(function ($stateProvider, $urlRouterProvider) {
     console.log("setting config");
-    // Ionic uses AngularUI Router which uses the concept of states
-    // Learn more here: https://github.com/angular-ui/ui-router
-    // Set up the various states which the app can be in.
-    // Each state's controller can be found in controllers.js
+    // 通过$stateProvider设置各个状态，并为每个状态分配视图控制器
+    // 所有控制器在 controllers.js
     $stateProvider
 
-    // State to represent Login View
+    // 注册状态
     .state('login', {
         url: "/login",
         templateUrl: "templates/login.html",
@@ -103,7 +98,7 @@ angular.module('mychat', ['ionic', 'firebase', 'angularMoment', 'mychat.controll
         }
     })
 
-    // Each tab has its own nav history stack:
+
 
     .state('tab.rooms', {
         url: '/rooms',
@@ -125,7 +120,7 @@ angular.module('mychat', ['ionic', 'firebase', 'angularMoment', 'mychat.controll
         }
     })
 
-    // if none of the above states are matched, use this as the fallback
+    // 找不到则跳转到该状态
     $urlRouterProvider.otherwise('/login');
 
 });

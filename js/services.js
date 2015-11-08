@@ -6,7 +6,7 @@ angular.module('mychat.services', ['firebase'])
             return $firebaseAuth(ref);
 }])
 
-.factory('Chats', function ($firebase, Rooms) {
+.factory('Chats', function ($firebase, Rooms,$rootScope) {
 
     var selectedRoomId;
 
@@ -18,9 +18,13 @@ angular.module('mychat.services', ['firebase'])
             return chats;
         },
         remove: function (chat) {
-            chats.$remove(chat).then(function (ref) {
-                ref.key() === chat.$id; // true item has been removed
-            });
+            console.log(chat.from);
+            if (chat.from===$rootScope.displayName.displayName){
+                chats.$remove(chat).then(function (ref) {
+                    ref.key() === chat.$id; // true item has been removed
+                });
+            }
+
         },
         get: function (chatId) {
             for (var i = 0; i < chats.length; i++) {
