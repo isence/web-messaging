@@ -97,10 +97,10 @@ angular.module('mychat.controllers', [])
 })
 
 .controller('RoomsCtrl', function ($scope, Rooms, Chats, $state) {
-    //console.log("Rooms Controller initialized");
+   
     $scope.rooms = Rooms.all();
-        //console.log($scope.rooms);
-
+      
+//用户点击房间的触发事件   
     $scope.openChatRoom = function (roomId) {
         $state.go('tab.chat', {
             roomId: roomId
